@@ -1,5 +1,7 @@
 # AuctionIT — Buyer Journey & Risk Management Prototype
 
+Deployed on Vercel.
+
 A clickable, multi-page prototype demonstrating a proposed buyer journey and
 risk-management system for AuctionIT, a B2B industrial scrap auction platform.
 Built for a product-management case study presentation: every screen is real
