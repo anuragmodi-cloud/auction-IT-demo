@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AuctionIT — Buyer Journey & Risk Management Prototype
 
-## Getting Started
+A clickable, multi-page prototype demonstrating a proposed buyer journey and
+risk-management system for AuctionIT, a B2B industrial scrap auction platform.
+Built for a product-management case study presentation: every screen is real
+and navigable, with an in-app "?" explaining the product rationale behind each
+step, not just the happy path.
 
-First, run the development server:
+No real backend, auth, or database — all state lives in an in-memory React
+context that persists only for the browser session and resets via the
+"Reset demo" button in the header.
+
+## Running it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 — you'll land on the login page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things are
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/lib/store.tsx` — the mock bidder state machine (trust score, tier, caps,
+  KYC category state, complaints, KB, resolved lots) via React Context + reducer.
+- `src/lib/mockData.ts` — the 5 mock lots, category definitions, seeded KYC
+  knowledge-base rows.
+- `src/app/*` — one route per journey step (login, kyc, browse, lot detail,
+  bidding, outcomes, deprioritized, admin), matching the phases in the spec.
+- `src/components/HelpInfo.tsx` — the "?" popover used everywhere to explain
+  the underlying design rationale for a step.
+- `src/app/how-to-demo/page.tsx` — the in-app presenter script: recommended
+  click-through order and which edge case to trigger at each step.
 
-## Learn More
+## Recommended demo order
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See the in-app **How to demo this** page (also in the left nav) for the full
+click-through script, including which edge cases to trigger at each step
+(registry outcomes, price cap lift, concurrent-lot cap, consecutive-default
+ban, manipulation flag, and the inactivity non-effect on trust score).
